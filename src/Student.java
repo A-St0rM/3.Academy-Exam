@@ -22,11 +22,11 @@ public class Student {
         if (courses.isEmpty()) {
             courses.add(course);
             grades.add(grade);
-            System.out.println("added succesfully");
+            System.out.println("added successfully");
         } else {
             for (Course sc : courses) {
                 if (!sc.equals(course)) {
-                    for (int j : gradeController) { //TODO why a breaking point?
+                    for (int j : gradeController) {
                         if (grade == j) {
                             gradeValid = true;
                         }
@@ -44,6 +44,15 @@ public class Student {
                 System.out.println("Enter valid grade");
             }
         }
+    }
+
+    public double getAverageGrade() {
+        if (grades.isEmpty()) return 0.0;
+        double total = 0;
+        for (int grade : grades) {
+            total += grade;
+        }
+        return total / grades.size();
     }
 
     public Course getSpecificCourse(int i){
