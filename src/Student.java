@@ -6,7 +6,7 @@ import java.util.List;
 public class Student {
 
     private Course course;
-    private static int[] gradeController = {-3, 0, 2, 4, 7, 10, 12};
+    private final int[] gradeController = {-3, 0, 2, 4, 7, 10, 12};
     private String name;
     private List<Course> courses;
     private List<Integer> grades;
@@ -35,27 +35,25 @@ public class Student {
                     System.out.println("You already have this course");
                 }
             }
-            if(gradeValid){
+            if (gradeValid) {
                 System.out.println("added succesfully");
                 courses.add(course);
                 grades.add(grade);
-            }
-            else{
+            } else {
                 System.out.println("Enter valid grade");
             }
         }
     }
 
     public double getAverageGrade() {
-        if (grades.isEmpty()) return 0.0;
         double total = 0;
-        for (int grade : grades) {
-            total += grade;
+        for (int i = 0; i < grades.size(); i++) {
+            total += grades.get(i);
         }
         return total / grades.size();
     }
 
-    public Course getSpecificCourse(int i){
+    public Course getSpecificCourse(int i) {
         return courses.get(i);
     }
 
@@ -67,32 +65,17 @@ public class Student {
         return grades;
     }
 
-    public void setGrades(List<Integer> grades) {
-        this.grades = grades;
-    }
-
     public List<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
-    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public String toString(){
+        return name + " " + getAverageGrade();
     }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
 }

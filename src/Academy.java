@@ -1,13 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Academy {
 
-    private List<Student> students;
-
-    public Academy(List<Student> students) {
-        this.students = students;
-    }
+    private List<Student> students = new ArrayList<>();
+    private List<Course> academyCourses = new ArrayList<>();
 
     public void printDiploma(Student student){
         System.out.println();
@@ -26,43 +22,56 @@ public class Academy {
         System.out.println("---------------------");
     }
 
-    public List<Student> getHighest(int amount) {
-        List<Student> topStudents = new ArrayList<>();
-        List<Student> tempStudents = new ArrayList<>(students); // a copy of the list in tempStudents
-
-        System.out.println();
-        for (int i = 0; i < amount && !tempStudents.isEmpty(); i++) {
-            Student best = tempStudents.get(0);
-            for (Student student : tempStudents) { //Going through temp list to find higest grade
-                if (student.getAverageGrade() > best.getAverageGrade()) { //
-                    best = student;
+    public void getHighest(int amount) {
+        List<Student> studentAverageGrades = new ArrayList<>();
+        for(Student s : students) {
+            s.getAverageGrade();
+            studentAverageGrades.add(s);
+        }
+        for(int i = 0; i < studentAverageGrades.size(); i++){
+            for(int j = 0; j< studentAverageGrades.size(); j++){
+                if(studentAverageGrades.get(i).getAverageGrade() > studentAverageGrades.get(j).getAverageGrade()){
+                    Student studentTemp = studentAverageGrades.get(i);
+                    studentAverageGrades.remove(i);
+                    studentAverageGrades.add(j,studentTemp);
                 }
             }
-            topStudents.add(best);
-            tempStudents.remove(best); // removes the found best
         }
 
-        return topStudents;
+        for(int x = 0; x < amount; x++){
+            System.out.println("The top " + amount + ". Highest student grades " + studentAverageGrades.get(x));
+        }
+
     }
 
-    public List<Student> getLowest(int amount) {
-        List<Student> bottomStudents = new ArrayList<>();
-        List<Student> tempStudents = new ArrayList<>(students); // Lav en kopi af listen
+    public void getLowest(int amount) {
+        List<Student> studentAverageGrades = new ArrayList<>();
 
-        System.out.println();
-        for (int i = 0; i < amount && !tempStudents.isEmpty(); i++) {
-            Student worst = tempStudents.get(0); // Start med første studerende
-            for (Student student : tempStudents) {
-                if (student.getAverageGrade() < worst.getAverageGrade()) {
-                    worst = student;
+        for(Student s : students) {
+            s.getAverageGrade();
+            studentAverageGrades.add(s);
+        }
+        for(int i = 0; i < studentAverageGrades.size(); i++){
+            for(int j = 0; j < studentAverageGrades.size(); j++){
+                if(studentAverageGrades.get(i).getAverageGrade() < studentAverageGrades.get(j).getAverageGrade()){
+                    Student studentTemp = studentAverageGrades.get(i);
+                    studentAverageGrades.remove(i);
+                    studentAverageGrades.add(j,studentTemp);
                 }
             }
-            bottomStudents.add(worst);
-            tempStudents.remove(worst); // Fjern den laveste, så vi kan finde den næste
         }
 
-        return bottomStudents;
+        for(int x = 0; x < amount; x++){
+            System.out.println("The top " + amount + ". Lowest student grades " + studentAverageGrades.get(x));
+        }
     }
 
+    public void addStudent(Student student){
+        students.add(student);
+    }
+
+    public void addCourse(Course course){
+        academyCourses.add(course);
+    }
 
 }
