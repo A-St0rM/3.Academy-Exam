@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
-    Course course;
     private final int[] gradeController = {-3, 0, 2, 4, 7, 10, 12};
     private String name;
     private List<Course> courses;
