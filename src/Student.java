@@ -1,11 +1,9 @@
-import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
-
-    private Course course;
+    Course course;
     private final int[] gradeController = {-3, 0, 2, 4, 7, 10, 12};
     private String name;
     private List<Course> courses;
@@ -17,33 +15,49 @@ public class Student {
         this.grades = new ArrayList<>();
     }
 
-    public void addCourse(Course course, int grade) {
-        boolean gradeValid = false;
-        if (courses.isEmpty()) {
-            courses.add(course);
-            grades.add(grade);
-            System.out.println("added successfully");
-        } else {
-            for (Course sc : courses) {
-                if (!sc.equals(course)) {
-                    for (int j : gradeController) {
-                        if (grade == j) {
-                            gradeValid = true;
-                        }
-                    }
-                } else {
-                    System.out.println("You already have this course");
-                }
-            }
-            if (gradeValid) {
-                System.out.println("added succesfully");
-                courses.add(course);
-                grades.add(grade);
-            } else {
-                System.out.println("Enter valid grade");
+    public void addCourse(Course course, int grade, ArrayList<Course> academyCourses) {
+        // Check if the course exists in the academy's course list
+        boolean courseExists = false;
+        for (Course ac : academyCourses) {
+            if (ac.equals(course)) {
+                courseExists = true;
+                break;
             }
         }
+
+        if (!courseExists) {
+            System.out.println("The course does not exist in the academy's course list.");
+            return;
+        }
+
+        // Check if the course is already added
+        for (Course sc : courses) {
+            if (sc.equals(course)) {
+                System.out.println("You already have this course.");
+                return;
+            }
+        }
+
+        // Check if the grade is valid
+        boolean gradeValid = false;
+        for (int validGrade : gradeController) {
+            if (grade == validGrade) {
+                gradeValid = true;
+                break;
+            }
+        }
+
+        if (!gradeValid) {
+            System.out.println("Enter a valid grade.");
+            return;
+        }
+
+        // Add the course and grade
+        courses.add(course);
+        grades.add(grade);
+        System.out.println("Added successfully.");
     }
+
 
     public double getAverageGrade() {
         double total = 0;
@@ -52,6 +66,7 @@ public class Student {
         }
         return total / grades.size();
     }
+
 
     public Course getSpecificCourse(int i) {
         return courses.get(i);
@@ -68,7 +83,6 @@ public class Student {
     public List<Course> getCourses() {
         return courses;
     }
-
 
     public String getName() {
         return name;
