@@ -1,9 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class Course {
 
-    private List<Course> academyCourses = new ArrayList<>();
     private String name;
 
     public Course(String name){
@@ -18,11 +15,4 @@ public class Course {
         return getName();
     }
 
-    public List<Course> getAcademyCourses(){
-        return academyCourses;
-    }
-
-    public void addCourse(Course course) {
-        academyCourses.add(course);
-    }
 }

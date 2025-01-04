@@ -2,9 +2,8 @@ import java.util.*;
 
 public class Academy {
 
-    Course course;
     private List<Student> students = new ArrayList<>();
-    List<Course> academyCourses = course.getAcademyCourses();
+    private List<Course> academyCourses = new ArrayList<>();
 
     public void printDiploma(Student student) {
         System.out.println();
@@ -15,7 +14,7 @@ public class Academy {
             System.out.println(student.getSpecificCourse(i) + ": " + student.getSpecificGrade(i));
         }
 
-        student.getAverageGrade();
+        System.out.println("The average grade is " + student.getAverageGrade());
         System.out.println("---------------------");
     }
 
@@ -71,5 +70,10 @@ public class Academy {
     public void addCourse(Course course) {
         academyCourses.add(course);
     }
+
+    public List<Course> getAcademyCourses() {
+        return academyCourses;
+    }
+
 
 }

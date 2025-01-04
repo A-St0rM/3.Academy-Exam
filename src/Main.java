@@ -1,4 +1,3 @@
-
 public class Main {
     public static void main(String[] args) {
         Academy ac = new Academy();
@@ -6,41 +5,35 @@ public class Main {
         Student jens = new Student("Jens");
         Student niklas = new Student("Niklas");
         Student jakob = new Student("Jakob");
+        Student louise = new Student("Louise");
 
         ac.addStudent(jens);
         ac.addStudent(niklas);
         ac.addStudent(jakob);
+        ac.addStudent(louise);
 
         Course database = new Course("Databases");
-        Course programming = new Course("programming");
+        Course programming = new Course("Programming");
         Course systemDesign = new Course("System Design");
-        Course itSecurity = new Course("It-security");
+        Course itSecurity = new Course("IT Security");
 
         ac.addCourse(database);
         ac.addCourse(programming);
         ac.addCourse(systemDesign);
         ac.addCourse(itSecurity);
-        //Get academyCourses
 
-        jens.addCourse(database, 10);
-        niklas.addCourse(database, 7);
-        jakob.addCourse(database,12);
+        jens.addCourse(database, 10, ac.getAcademyCourses());
+        niklas.addCourse(database, 7, ac.getAcademyCourses());
+        jakob.addCourse(database, 12, ac.getAcademyCourses());
+        louise.addCourse(database, 12, ac.getAcademyCourses());
 
-        jens.addCourse(programming, 10);
-        niklas.addCourse(programming, 7);
-        jakob.addCourse(programming,12);
-
-        jens.addCourse(itSecurity, 4);
-        niklas.addCourse(itSecurity, 0);
-        jakob.addCourse(itSecurity,7);
+        jens.addCourse(programming, 7, ac.getAcademyCourses());
+        niklas.addCourse(programming, 7, ac.getAcademyCourses());
+        jakob.addCourse(programming, 10, ac.getAcademyCourses());
+        louise.addCourse(programming, 12, ac.getAcademyCourses());
 
         ac.printDiploma(jens);
-        ac.printDiploma(niklas);
-        ac.printDiploma(jakob);
-
         ac.getHighest(2);
         ac.getLowest(1);
-
     }
-
 }

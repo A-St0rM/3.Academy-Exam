@@ -8,7 +8,6 @@ public class Student {
     private String name;
     private List<Course> courses;
     private List<Integer> grades;
-    List<Course> academyCourses = course.getAcademyCourses();
 
     public Student(String name) {
         this.name = name;
@@ -16,7 +15,7 @@ public class Student {
         this.grades = new ArrayList<>();
     }
 
-    public void addCourse(Course course, int grade) {
+    public void addCourse(Course course, int grade, List<Course> academyCourses) {
         // Check if the course exists in the academy's course list
         boolean courseExists = false;
         for (Course ac : academyCourses) {
@@ -53,7 +52,6 @@ public class Student {
             return;
         }
 
-        // Add the course and grade
         courses.add(course);
         grades.add(grade);
         System.out.println("Added successfully.");
