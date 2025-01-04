@@ -2,8 +2,9 @@ import java.util.*;
 
 public class Academy {
 
+    Course course;
     private List<Student> students = new ArrayList<>();
-    private List<Course> academyCourses = new ArrayList<>();
+    List<Course> academyCourses = course.getAcademyCourses();
 
     public void printDiploma(Student student) {
         System.out.println();
@@ -65,6 +66,7 @@ public class Academy {
     public void addStudent(Student student) {
         students.add(student);
     }
+
 
     public void addCourse(Course course) {
         academyCourses.add(course);

@@ -20,6 +20,7 @@ public class Main {
         ac.addCourse(programming);
         ac.addCourse(systemDesign);
         ac.addCourse(itSecurity);
+        //Get academyCourses
 
         jens.addCourse(database, 10);
         niklas.addCourse(database, 7);
@@ -28,6 +29,10 @@ public class Main {
         jens.addCourse(programming, 10);
         niklas.addCourse(programming, 7);
         jakob.addCourse(programming,12);
+
+        jens.addCourse(itSecurity, 4);
+        niklas.addCourse(itSecurity, 0);
+        jakob.addCourse(itSecurity,7);
 
         ac.printDiploma(jens);
         ac.printDiploma(niklas);
