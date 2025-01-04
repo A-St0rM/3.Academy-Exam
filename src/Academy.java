@@ -19,48 +19,31 @@ public class Academy {
     }
 
     public void getHighest(int amount) {
-        List<Student> studentAverageGrades = new ArrayList<>();
-        for (Student s : students) {
-            s.getAverageGrade();
-            studentAverageGrades.add(s);
-        }
-        for (int currentStudentIndex = 0; currentStudentIndex < studentAverageGrades.size(); currentStudentIndex++) {
-            for (int comparisonStudentIndex = 0; comparisonStudentIndex < studentAverageGrades.size(); comparisonStudentIndex++) {
-                if (studentAverageGrades.get(currentStudentIndex).getAverageGrade() > studentAverageGrades.get(comparisonStudentIndex).getAverageGrade()) {
-                    Student studentTemp = studentAverageGrades.get(currentStudentIndex);
-                    studentAverageGrades.remove(currentStudentIndex);
-                    studentAverageGrades.add(comparisonStudentIndex, studentTemp);
-                }
-            }
-        }
+        // A new list of students
+        List<Student> studentAverageGrades = new ArrayList<>(students);
 
-        for (int x = 0; x < amount; x++) {
-            System.out.println("The top " + amount + ". Highest student grades " + studentAverageGrades.get(x));
-        }
+        // Sort  list based on averageGrades
+        studentAverageGrades.sort((s1, s2) -> Double.compare(s2.getAverageGrade(), s1.getAverageGrade()));
 
+
+        System.out.println("Top " + amount + " students with the highest grades:");
+        for (int x = 0; x < Math.min(amount, studentAverageGrades.size()); x++) {
+            System.out.println((x + 1) + ". " + studentAverageGrades.get(x));
+        }
     }
+
 
     public void getLowest(int amount) {
-        List<Student> studentAverageGrades = new ArrayList<>();
+        List<Student> studentAverageGrades = new ArrayList<>(students);
 
-        for (Student s : students) {
-            s.getAverageGrade();
-            studentAverageGrades.add(s);
-        }
-        for (int i = 0; i < studentAverageGrades.size(); i++) {
-            for (int j = 0; j < studentAverageGrades.size(); j++) {
-                if (studentAverageGrades.get(i).getAverageGrade() < studentAverageGrades.get(j).getAverageGrade()) {
-                    Student studentTemp = studentAverageGrades.get(i);
-                    studentAverageGrades.remove(i);
-                    studentAverageGrades.add(j, studentTemp);
-                }
-            }
-        }
+        studentAverageGrades.sort((s1, s2) -> Double.compare(s1.getAverageGrade(), s2.getAverageGrade()));
 
-        for (int x = 0; x < amount; x++) {
-            System.out.println("The top " + amount + ". Lowest student grades " + studentAverageGrades.get(x));
+        System.out.println("Top " + amount + " students with the lowest grades:");
+        for (int x = 0; x < Math.min(amount, studentAverageGrades.size()); x++) {
+            System.out.println((x + 1) + ". " + studentAverageGrades.get(x));
         }
     }
+
 
     public void addStudent(Student student) {
         students.add(student);
