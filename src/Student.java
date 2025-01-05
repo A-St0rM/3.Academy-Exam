@@ -25,7 +25,7 @@ public class Student {
         }
 
         if (!courseExists) {
-            System.out.println("The course does not exist in the academy's course list.");
+            System.out.println("The course: " + course.getName() + " does not exist in the academy's course list.");
             return;
         }
 
