@@ -10,10 +10,9 @@ public class Academy {
         System.out.println("------ Diploma ------");
         System.out.println("Name: " + student.getName());
         System.out.println("Subjects and grades:");
-        for (int i = 0; i < student.getCourses().size(); i++) {
-            System.out.println(student.getSpecificCourse(i) + ": " + student.getSpecificGrade(i));
+        for (Map.Entry<Course, Integer> entry : student.getCourseGrades().entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
         }
-
         System.out.println("The average grade is " + student.getAverageGrade());
         System.out.println("---------------------");
     }
@@ -31,7 +30,6 @@ public class Academy {
             System.out.println((x + 1) + ". " + studentAverageGrades.get(x));
         }
     }
-
 
     public void getLowest(int amount) {
         List<Student> studentAverageGrades = new ArrayList<>(students);

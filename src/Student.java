@@ -1,17 +1,17 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Student {
     private final int[] gradeController = {-3, 0, 2, 4, 7, 10, 12};
     private String name;
-    private List<Course> courses;
-    private List<Integer> grades;
+    private Map<Course, Integer> courseGrades;
 
     public Student(String name) {
         this.name = name;
-        this.courses = new ArrayList<>();
-        this.grades = new ArrayList<>();
+        this.courseGrades = new HashMap<>();
     }
 
     public void addCourse(Course course, int grade, List<Course> academyCourses) {
@@ -30,9 +30,9 @@ public class Student {
         }
 
         // Check if the course is already added
-        for (Course sc : courses) {
+        for (Course sc : courseGrades.keySet()) {
             if (sc.equals(course)) {
-                System.out.println("You already have this course.");
+                System.out.println("You already have this course: " + course);
                 return;
             }
         }
@@ -51,38 +51,25 @@ public class Student {
             return;
         }
 
-        courses.add(course);
-        grades.add(grade);
+        courseGrades.put(course, grade);
         System.out.println("Added successfully.");
     }
 
 
     public double getAverageGrade() {
         double total = 0;
-        for (int i = 0; i < grades.size(); i++) {
-            total += grades.get(i);
+        for (int grade : courseGrades.values()) {
+            total += grade;
         }
-        return total / grades.size();
+        return total / courseGrades.size();
     }
 
 
-    public Course getSpecificCourse(int i) {
-        return courses.get(i);
+    public Map<Course, Integer> getCourseGrades() {
+        return courseGrades;
     }
 
-    public int getSpecificGrade(int i) {
-        return grades.get(i);
-    }
-
-    public List<Integer> getGrades() {
-        return grades;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public String getName() {
+    public String getName(){
         return name;
     }
 
